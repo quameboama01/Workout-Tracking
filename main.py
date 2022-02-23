@@ -26,9 +26,9 @@ exercise_config = {
     'age': AGE
 }
 
-response = requests.post(url=exercise_endpoint,
-                         headers=headers, json=exercise_config)
-results = response.json()
+exercise_res = requests.post(url=exercise_endpoint,
+                             headers=headers, json=exercise_config)
+results = exercise_res.json()
 
 
 # ******************************* New Configuration *************************************
@@ -47,7 +47,7 @@ for exercise in results["exercises"]:
             "calories": exercise["nf_calories"]
         }
     }
-    res = requests.post(url=sheety_endpoint,
-                        json=sheety_config, auth=("andrews", "prayer01"))
-    res.raise_for_status()
-    print(res.text)
+    sheety_res = requests.post(url=sheety_endpoint,
+                               json=sheety_config, auth=("andrews", "prayer01"))
+    sheety_res.raise_for_status()
+    print(sheety_res.text)
