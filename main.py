@@ -36,6 +36,7 @@ date = dt.datetime.now().strftime("%d/%m/%Y")
 time = dt.datetime.now().strftime("%X")
 
 sheety_endpoint = "https://api.sheety.co/512493e17f966118373cd869f61856dd/workoutTracking/workouts"
+sheety_header = {"Authorization": "Bearer MYSECRETTOKEN"}
 
 for exercise in results["exercises"]:
     sheety_config = {
@@ -48,6 +49,8 @@ for exercise in results["exercises"]:
         }
     }
     sheety_res = requests.post(url=sheety_endpoint,
-                               json=sheety_config, auth=("andrews", "prayer01"))
+                               json=sheety_config, headers=sheety_header)
     sheety_res.raise_for_status()
     print(sheety_res.text)
+
+print("End of Script!")
